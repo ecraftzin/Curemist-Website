@@ -23,6 +23,10 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
+import ContactUs from "./pages/contact";
+import PrivacyPolicy from "./pages/privacy-policy";
+import TermsAndConditions from "./pages/terms-and-conditions";
+import ShippingInformation from "./pages/shipping-information";
 
 // Admin Components
 import AdminLayout from "@/components/admin/AdminLayout";
@@ -95,6 +99,10 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/shipping-information" element={<ShippingInformation />} />
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />

@@ -1,14 +1,21 @@
 import { FiPhone, FiMail } from "react-icons/fi";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
+const legalLinks = [
+  { label: "Contact Us", href: "/contact" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-and-conditions" },
+  { label: "Shipping Information", href: "/shipping-information" },
+];
 
 export default function Footer() {
   return (
     <footer className="bg-brand-yellow py-8 md:py-16 relative">
       <div className="container mx-auto px-4 md:px-6 lg:px-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 mb-8 md:mb-12">
           {/* Logo and Address */}
-          <div>
+          <div className="lg:col-span-2">
             <img
               src="https://cure-mist.vercel.app/Logo.png"
               className="h-[50px] md:h-[62px] w-auto mb-4 md:mb-6"
@@ -22,8 +29,24 @@ export default function Footer() {
               </p>
             </div>
           </div>
-          {/* Spacer */}
-          <div className="hidden lg:block"></div>
+
+          {/* Quick Links */}
+          <div>
+            <p className="text-sm md:text-base font-extrabold text-black mb-3 md:mb-4 uppercase tracking-wide">Quick Links</p>
+            <ul className="space-y-2">
+              {legalLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="text-xs md:text-sm font-medium text-black hover:underline underline-offset-2 transition-all"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact Information */}
           <div className="space-y-4 md:space-y-6">
             <div className="flex items-center gap-3 md:gap-4">
