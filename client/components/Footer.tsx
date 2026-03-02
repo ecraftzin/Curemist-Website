@@ -17,7 +17,7 @@ export default function Footer() {
           {/* Logo and Address */}
           <div className="lg:col-span-2">
             <img
-              src="https://cure-mist.vercel.app/Logo.png"
+              src="/Logo/curemist.svg"
               className="h-[50px] md:h-[62px] w-auto mb-4 md:mb-6"
             />
             <div className="space-y-2">
