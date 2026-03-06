@@ -81,10 +81,10 @@ export default function Header() {
           {/* Right Actions */}
           <div className="flex items-center gap-2 md:gap-6 justify-end flex-shrink-0">
             <img
-  src="/Headerlogo/curemist 4.png"
-  alt="CureMist Certified Logo"
-  className="hidden lg:block h-12 w-auto object-contain"
-/>
+              src="/Headerlogo/curemist 4.png"
+              alt="CureMist Certified Logo"
+              className="hidden md:block h-20 w-auto object-contain"
+            />
             <Link to="/blog" className=" md:flex items-center text-black text-xs md:text-sm font-semibold hover:opacity-80">
               BLOG
             </Link>

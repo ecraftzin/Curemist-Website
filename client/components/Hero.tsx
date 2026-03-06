@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const BANNERS = [
   {
-    image: "/banners/banner1.png",
+    image: "/banners/banner01.png",
     title: "CureMist - Ayurvedic First Aid Wound Spray",
     description: "Safe for all ages | AYUSH Certified |\nPatented Formula",
     buttonText: "Shop Now",
@@ -11,7 +11,7 @@ const BANNERS = [
     mobileBgPos: "55% 30%",
   },
   {
-    image: "/banners/banner2.png",
+    image: "/banners/banner02.png",
     title: "Trusted by Over 500+ Families for Everyday Healing",
     description: "From Kids Scrapes\nto daily first aid needs",
     buttonText: "Shop Now",
