@@ -88,9 +88,6 @@ export default function Header() {
             <Link to="/blog" className=" md:flex items-center text-black text-xs md:text-sm font-semibold hover:opacity-80">
               BLOG
             </Link>
-            <Link to="/contact" className=" md:flex items-center text-black text-xs md:text-sm font-semibold hover:opacity-80">
-              CONTACT
-            </Link>
             {/* Profile Button / Login.... */}
             {!user ? (
               <button
