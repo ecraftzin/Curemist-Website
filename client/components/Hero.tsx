@@ -12,7 +12,7 @@ const BANNERS = [
   },
   {
     image: "/banners/banner02.png",
-    title: "Trusted by Over 500+ Families for Everyday Healing",
+    title: "Trusted by Over 5000+ Families for Everyday Healing",
     description: "From Kids Scrapes\nto daily first aid needs",
     buttonText: "Shop Now",
     mobileBgPos: "70% 20%",
