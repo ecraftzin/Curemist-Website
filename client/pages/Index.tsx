@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import ProductSection from "@/components/ProductSection";
 import FeatureSections from "@/components/FeatureSections";
 import StatsSection from "@/components/StatsSection";
+import Certifications from "@/components/ui/Certification";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
@@ -17,6 +18,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import KeyFeaturesSection from "@/components/KeyFeaturesSection";
+import WhySafe from "@/components/ui/WhySafe";
 
 export default function Index() {
   const location = useLocation();
@@ -41,6 +43,8 @@ export default function Index() {
         <ProductSection />
         <FeatureSections />
         <StatsSection />
+        <WhySafe />
+        <Certifications />
         <TestimonialsSection />
         <FAQSection />
         <Footer />

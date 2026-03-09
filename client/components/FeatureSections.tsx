@@ -1,6 +1,6 @@
 const TurmericIcon = () => (
   <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 22.9706C0.160555 23.0528 1.01816 23.9178 1.17871 24C0.787113 20.4775 2.28302 19.4168 3.85333 19.4521C15.754 19.726 21.2364 9.98043 22 0C18.8515 2.54403 -3.80242 0.571428 0.787113 15.7808C3.5283 9.90998 8.3058 8.37182 14.0271 7.86693C5.94446 9.82779 1.47241 15.0372 0 22.9706Z" fill="#D5A000"/>
+    <path d="M0 22.9706C0.160555 23.0528 1.01816 23.9178 1.17871 24C0.787113 20.4775 2.28302 19.4168 3.85333 19.4521C15.754 19.726 21.2364 9.98043 22 0C18.8515 2.54403 -3.80242 0.571428 0.787113 15.7808C3.5283 9.90998 8.3058 8.37182 14.0271 7.86693C5.94446 9.82779 1.47241 15.0372 0 22.9706Z" fill="#D5A000" />
   </svg>
 );
 
@@ -22,7 +22,7 @@ export default function FeatureSections() {
             <p className="text-base md:text-xl lg:text-[21px] font-medium text-black mb-4 md:mb-6 leading-relaxed">
               A breakthrough in wound care that blends the wisdom of Ayurveda with modern science.
             </p>
-            
+
             <div className="space-y-2 md:space-y-3 mb-6">
               {[
                 "100% Ayurvedic | AYUSH Approved",
@@ -61,7 +61,7 @@ export default function FeatureSections() {
               Smart Healing Technology Inside.<br />
               Designed for modern lifestyles, Cure Mist works instantly—without touch.
             </p>
-            
+
             <div className="space-y-2 md:space-y-3">
               {[
                 { text: "Quick-Drying Technology", sub: "(Dries in under 1 minute)" },
