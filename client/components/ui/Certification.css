@@ -9,12 +9,16 @@
 }
 
 /* ── Section ── */
+.ct-section,
+.ct-section * {
+    font-family: 'Montserrat' !important;
+}
+
 .ct-section {
     position: relative;
-    padding: 80px 60px 100px;
+    padding: 40px 60px 100px;
     background: linear-gradient(to bottom right, #FFF1C5, #FFE8A0, #EDB200);
     overflow: hidden;
-    font-family: 'Montserrat', -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .ct-section::before {
@@ -32,7 +36,7 @@
     width: 100%;
     max-width: 1280px;
     height: 1px;
-    margin: 0 auto 90px;
+    margin: 0 auto 24px;
     background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.25), transparent);
     opacity: 0.5;
 }
@@ -71,7 +75,7 @@
 
 /* ── Title ── */
 .ct-title {
-    font-family: 'Montserrat', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: clamp(32px, 4vw, 52px);
     font-weight: 800;
     text-align: center;
@@ -89,7 +93,7 @@
 /* ── Subtitle ── */
 .ct-sub {
     text-align: center;
-    font-family: 'Montserrat', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 500;
     color: #000000;
@@ -131,7 +135,7 @@
 }
 
 .ct-stat-num {
-    font-family: 'Montserrat', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 22px;
     font-weight: 800;
     color: #000000;
@@ -333,7 +337,7 @@
 
 /* ── Card text ── */
 .ct-card h3 {
-    font-family: 'Montserrat', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: 700;
     color: #000000;
@@ -342,7 +346,7 @@
 }
 
 .ct-card p {
-    font-family: 'Montserrat', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 12.5px;
     font-weight: 500;
     color: #000000;
@@ -385,7 +389,7 @@
     color: #FFD147;
     font-size: 11px;
     font-weight: 700;
-    font-family: 'Montserrat', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     border: none;
@@ -417,7 +421,7 @@
     color: #000000;
     font-size: 11px;
     font-weight: 600;
-    font-family: 'Montserrat', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     border: 1px solid rgba(0, 0, 0, 0.25);

@@ -68,7 +68,7 @@ export default function FeatureSections() {
                 { text: "Forms a Waterproof & Dustproof", sub: "Protective Film" },
                 { text: "Bio-Safe Protective Layer using German", sub: "Technology" },
                 { text: "Reduced Scarring Technology, especially", sub: "for burn wounds" },
-                { text: "3 Years Medicine Strength before Expiry", sub: "" }
+                { text: "Long shelf life – remains effective for up to 3 years from the date of manufacture.", sub: "" }
               ].map((feature, index) => (
                 <div key={index} className="flex items-start gap-2 md:gap-3">
                   <div className="mt-1 flex-shrink-0">

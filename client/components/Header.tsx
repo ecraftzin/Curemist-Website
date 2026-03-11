@@ -25,6 +25,8 @@ export default function Header() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const profileMenuRef = useRef<HTMLDivElement>(null);
 
+  const { setIsCartOpen } = useCart();
+
   // Handle logout
   const handleLogout = () => {
     signOut();
@@ -135,10 +137,13 @@ export default function Header() {
                 )}
               </div>
             )}
-            <Link to="/cart" className="flex items-center gap-1 text-black text-xs md:text-sm font-medium hover:opacity-80 flex-shrink-0">
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="flex items-center gap-1 text-black text-xs md:text-sm font-medium hover:opacity-80 flex-shrink-0"
+            >
               <ShoppingCart className="w-5 h-4 md:w-[26px] md:h-[23px]" />
               <span className="text-xs md:text-sm"><CartCount /></span>
-            </Link>
+            </button>
           </div>
         </div>
       </div>

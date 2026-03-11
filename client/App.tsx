@@ -12,6 +12,7 @@ import { CartProvider } from "@/lib/cart";
 import { AuthProvider, useAuth } from "@/lib/auth";
 
 import Preloader from "@/components/Preloader";
+import CartDrawer from "@/components/CartDrawer";
 
 import Index from "./pages/Index";
 import Blog from "./pages/blog";
@@ -27,6 +28,7 @@ import ContactUs from "./pages/contact";
 import PrivacyPolicy from "./pages/privacy-policy";
 import TermsAndConditions from "./pages/terms-and-conditions";
 import ShippingInformation from "./pages/shipping-information";
+import ProductDetailsPage from "./pages/product-details";
 
 // Admin Components
 import AdminLayout from "@/components/admin/AdminLayout";
@@ -103,6 +105,7 @@ function AppRoutes() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/shipping-information" element={<ShippingInformation />} />
+        <Route path="/product/:slug" element={<ProductDetailsPage />} />
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
@@ -130,6 +133,7 @@ const App = () => (
       <AuthProvider>
         <CartProvider>
           <BrowserRouter>
+            <CartDrawer />
             <AppRoutes />
           </BrowserRouter>
         </CartProvider>

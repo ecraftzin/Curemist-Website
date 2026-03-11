@@ -45,7 +45,6 @@ export default function Index() {
         <StatsSection />
         <WhySafe />
         <Certifications />
-        <TestimonialsSection />
         <FAQSection />
         <Footer />
       </main>

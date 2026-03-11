@@ -17,14 +17,14 @@ export default function StatsSection() {
     },
     {
       icon: <img src="/icons/homeicon4.png" alt="Protection Icon" className="h-[72px]" />,
-      number: "99%",
-      description: "Protection Against External Contaminants"
+      number: "99.9%",
+      description: "Contaminants"
     }
   ];
 
   return (
     <section className="relative py-8 md:py-16 bg-white">
-      <div className="absolute top-[-100px] md:bottom-[-100px] left-0 right-0 hidden md:block">
+      <div className="absolute top-[-140px] md:bottom-[-100px] left-0 right-0 hidden md:block">
         <div className="container mx-auto px-4 md:px-6 lg:px-24">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {stats.map((stat, index) => (

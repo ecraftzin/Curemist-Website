@@ -181,11 +181,11 @@ const CertCard: React.FC<CertCard> = ({
             {file}
         </div>
         <div className="ct-actions">
-            <a href={downloadHref} className="ct-btn-download">
+            <a href={downloadHref} download className="ct-btn-download">
                 <DownloadIcon />
                 Download
             </a>
-            <a href={viewHref} className="ct-btn-view">
+            <a href={viewHref} target="_blank" rel="noopener noreferrer" className="ct-btn-view">
                 <ViewIcon />
                 View
             </a>
@@ -214,21 +214,7 @@ const Certifications: React.FC = () => {
                 CureMist the safest choice for your family.
             </p>
 
-            {/* Stats bar */}
-            <div className="ct-stats">
-                {[
-                    { num: "8", label: "Public Docs" },
-                    { num: "1", label: "Registered Patent" },
-                    { num: "ISO", label: "Certified Facility" },
-                    { num: "AYUSH", label: "Govt. Approved" },
-                    { num: "GMP", label: "Certified Mfg." },
-                ].map((s) => (
-                    <div className="ct-stat-item" key={s.label}>
-                        <span className="ct-stat-num">{s.num}</span>
-                        <span className="ct-stat-label">{s.label}</span>
-                    </div>
-                ))}
-            </div>
+
 
             {/* Row 1 */}
             <div className="ct-grid">

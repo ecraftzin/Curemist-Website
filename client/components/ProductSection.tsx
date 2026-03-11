@@ -1,87 +1,84 @@
+import React, { useRef } from "react";
 import ProductCard from "./ProductCard";
+import { products } from "@/lib/products";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ProductSection() {
-  const products = [
-    {
-      title: "CureMist Ayurvedic\nFirst Aid Wound Spray 12.5g",
-      size: "12.5 gm",
-      price: "₹160",
-      originalPrice: "₹168",
-      discount: "5% Off",
-      image: "/Products/homeproduct1.png",
-      images: ["/Products/Product1.0.png", "/Products/Product1.1.png"],
-      benefit: "Anti Fungal",
-      form: "Spray",
-      description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
-    },
-    {
-      title: "CureMist Ayurvedic\nFirst Aid Wound Spray 25g",
-      size: "25 gm",
-      price: "₹260",
-      originalPrice: "₹271",
-      discount: "5% Off",
-      image: "/Products/homeproduct2.png",
-      images: ["/Products/Product2.0.jpeg", "/Products/Product2.1.jpeg"],
-      benefit: "Anti Fungal",
-      form: "Spray",
-      description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
-    },
-    {
-      title: "CureMist Ayurvedic\nFirst Aid Wound Spray Combo(37.5g)",
-      size: "Combo",
-      price: "₹418",
-      originalPrice: "₹439",
-      discount: "5% Off",
-      image: "/Products/homeproduct3.png",
-      images: ["/Products/Product3.0.jpeg", "/Products/Product3.1.jpeg"],
-      benefit: "Anti Fungal",
-      form: "Spray",
-      description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
-    },
-     {
-      title: "CureMist Ayurvedic\nFirst Aid Wound Spray 50g",
-      size: "50 gm",
-      price: "₹345",
-      originalPrice: "₹363",
-      discount: "5% Off",
-      image: "/Products/homeproduct4.png",
-      images: ["/Products/Product4.0.png", "/Products/Product4.1.png"],
-      benefit: "Anti Fungal",
-      form: "Spray",
-      description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
-    },
-  ];
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = scrollContainerRef.current.clientWidth * 0.8;
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  // Replicate products to enable continuous scrolling flow on desktop
+  const carouselProducts = [...products, ...products];
 
   return (
-    <section id="products" className="py-12 md:py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-24">
+    <section id="products" className="py-12 md:py-20 bg-gray-50/30">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl relative">
         {/* Section Header */}
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-[34px] font-bold text-black mb-2 md:mb-4">
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-black mb-4 tracking-tight">
             Most Trusted Wound Care Spray
           </h2>
-          <p className="text-base md:text-xl lg:text-[21px] font-medium text-black max-w-[813px] mx-auto leading-relaxed px-2">
+          <p className="text-base md:text-xl font-medium text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Fast relief for sports injuries & active lifestyles. Protects and heals scrapes, turf burns & workout wounds instantly.
           </p>
         </div>
 
-        {/* Product Grid */}
-        <div id="product-cards" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-0 md:gap-x-2 lg:gap-x-0 gap-y-6 md:gap-y-12 lg:gap-y-16">
+        {/* Mobile View: 2-Column Grid Wrapper */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:hidden">
           {products.map((product, index) => (
-            <ProductCard
-              key={index}
-              title={product.title}
-              size={product.size}
-              price={product.price}
-              originalPrice={product.originalPrice}
-              discount={product.discount}
-              image={product.image}
-              images={product.images}
-              benefit={product.benefit}
-              form={product.form}
-              description={product.description}
-            />
+            <ProductCard key={index} {...product} />
           ))}
+        </div>
+
+        {/* Desktop View: Carousel Container */}
+        <div className="hidden md:block relative group">
+          {/* Navigation Arrows for Desktop */}
+          <button 
+            onClick={() => scroll('left')} 
+            className="hidden md:flex absolute -left-4 xl:-left-12 top-1/2 -translate-y-1/2 z-10 bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] border border-gray-100 p-3 rounded-full hover:bg-gray-50 hover:scale-105 transition-all duration-300 opacity-0 group-hover:opacity-100 focus:outline-none"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="w-6 h-6 text-gray-800" />
+          </button>
+          
+          <button 
+            onClick={() => scroll('right')} 
+            className="hidden md:flex absolute -right-4 xl:-right-12 top-1/2 -translate-y-1/2 z-10 bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] border border-gray-100 p-3 rounded-full hover:bg-gray-50 hover:scale-105 transition-all duration-300 opacity-0 group-hover:opacity-100 focus:outline-none"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="w-6 h-6 text-gray-800" />
+          </button>
+
+          {/* Desktop Snap Scroll List */}
+          <div 
+             ref={scrollContainerRef}
+             className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar scroll-smooth pt-4"
+          >
+             {carouselProducts.map((product, index) => (
+                <div key={index} className="w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] flex-shrink-0 snap-start h-full">
+                   <ProductCard {...product} />
+                </div>
+             ))}
+          </div>
+          
+          <style dangerouslySetInnerHTML={{__html: `
+            .hide-scrollbar::-webkit-scrollbar {
+              display: none;
+            }
+            .hide-scrollbar {
+              -ms-overflow-style: none;
+              scrollbar-width: none;
+            }
+          `}} />
         </div>
       </div>
     </section>

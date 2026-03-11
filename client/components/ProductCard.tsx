@@ -1,101 +1,131 @@
-import { Sheet, SheetTrigger } from "./ui/sheet";
-import ProductDetailsSheet from "./ProductDetailsSheet";
-import ProductImageDialog from "./ProductImageDialog";
 import { useCart } from "@/lib/cart";
 import { toast } from "@/components/ui/use-toast";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/lib/auth";
 
 interface ProductCardProps {
+  slug: string;
   title: string;
   size: string;
   price: string;
   originalPrice?: string;
   discount: string;
   image: string;
-  images?: string[];
-  benefit?: string;
-  form?: string;
-  description?: string;
 }
 
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/lib/auth";
-
-function AddToCartButton({ title, size, price, originalPrice, image }: { title: string; size: string; price: string; originalPrice?: string; image: string }) {
+function AddToCartButton({
+  slug,
+  title,
+  size,
+  price,
+  originalPrice,
+  image,
+}: {
+  slug: string;
+  title: string;
+  size: string;
+  price: string;
+  originalPrice?: string;
+  image: string;
+}) {
   const { addItem } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
 
   const handleAdd = () => {
     if (!user) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
-    const slug = `${title.replace(/\s+/g, "-").toLowerCase()}-${size.replace(/\s+/g, "").toLowerCase()}`;
     const numericPrice = Number(price.replace(/[^\d]/g, "")) || 0;
-    const numericOriginalPrice = originalPrice ? Number(originalPrice.replace(/[^\d]/g, "")) || 0 : numericPrice;
-    addItem({ id: slug, title, image, price: numericPrice, originalPrice: numericOriginalPrice, quantity: 1, size }, 1);
+    const numericOriginalPrice = originalPrice
+      ? Number(originalPrice.replace(/[^\d]/g, "")) || 0
+      : numericPrice;
+    addItem(
+      { id: slug, title, image, price: numericPrice, originalPrice: numericOriginalPrice, quantity: 1, size },
+      1
+    );
     try { toast({ title: "Added to cart" }); } catch { }
   };
+
   return (
-    <button onClick={handleAdd} className="flex-1 bg-brand-yellow hover:bg-brand-yellow/90 text-brand-blue px-4 py-4 rounded-md text-sm font-bold transition-colors">
+    <button
+      onClick={handleAdd}
+      className="w-full xl:flex-1 bg-brand-yellow hover:bg-brand-yellow/90 text-brand-blue px-2 py-2.5 rounded-lg text-[11px] md:text-xs lg:text-sm font-bold transition-all whitespace-nowrap text-center"
+    >
       ADD TO CART
     </button>
   );
 }
 
-export default function ProductCard({ title, size, price, originalPrice, discount, image, images, benefit, form, description }: ProductCardProps) {
-  const [dialogOpen, setDialogOpen] = useState(false);
+export default function ProductCard({
+  slug,
+  title,
+  size,
+  price,
+  originalPrice,
+  discount,
+  image,
+}: ProductCardProps) {
+  const navigate = useNavigate();
 
-  const openDialog = () => setDialogOpen(true);
-  const closeDialog = () => setDialogOpen(false);
+  const goToDetails = () => navigate(`/product/${slug}`);
 
   return (
-    <>
-      <div className="flex flex-col items-center">
-        {/* Product Image Container */}
-        <div
-          className="relative w-full max-w-[400px] h-[420px] mb-6 cursor-pointer group"
-          onClick={openDialog}
-        >
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-full object-cover rounded-lg transition-transform group-hover:scale-105"
-          />
-          {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg opacity-0 group-hover:opacity-100 transition-opacity bg-brand-blue/90 px-6 py-3 rounded-lg">Click to View</span>
-          </div>
-          {/* Size Badge */}
-          <div className="absolute bottom-4 right-4 bg-white/44 backdrop-blur-sm px-6 py-2 rounded-full">
-            <span className="text-purple-badge text-lg font-bold">{size}</span>
-          </div>
+    <div className="flex flex-col h-full w-full bg-white rounded-2xl transition-all duration-300 hover:shadow-xl border border-gray-100 p-2 sm:p-3 md:p-4">
+      {/* Product Image Container */}
+      <div
+        className="group/image relative w-full aspect-[4/5] mb-3 md:mb-4 cursor-pointer overflow-hidden rounded-xl bg-gray-50 flex-shrink-0"
+        onClick={goToDetails}
+      >
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover/image:scale-110"
+        />
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/10 transition-all flex items-center justify-center">
+          <span className="text-white font-bold text-xs md:text-lg opacity-0 group-hover/image:opacity-100 transition-opacity bg-brand-blue/90 px-3 md:px-4 py-1.5 md:py-2 rounded-lg translate-y-4 group-hover/image:translate-y-0 duration-300">
+            View Details
+          </span>
         </div>
+        {/* Size Badge */}
+        <div className="absolute top-2 left-2 md:top-3 md:left-3 bg-white/80 backdrop-blur-md px-2 py-1 md:px-3 md:py-1.5 rounded-full shadow-sm">
+          <span className="text-purple-badge text-[10px] md:text-sm font-bold">{size}</span>
+        </div>
+      </div>
 
-        {/* Product Info and Pricing in Two Columns */}
-        <div className="grid grid-cols-2 w-full max-w-[400px] mb-4 gap-2 items-center">
-          {/* First Column: Title */}
-          <h3 className="text-xl font-semibold text-black leading-snug max-w-[180px] whitespace-normal break-words col-span-1">
+      {/* Product Info (Flex Grow to align buttons at bottom) */}
+      <div className="flex flex-col flex-grow justify-between gap-3 md:gap-4">
+        <div className="flex justify-between items-start gap-1 md:gap-2">
+          <h3 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold text-black leading-snug flex-1 pr-1">
             {title}
           </h3>
-          {/* Second Column: Discount, Price, Original Price */}
-          <div className="flex flex-col items-end col-span-1">
-            <span className="text-discount text-sm font-bold">{discount}</span>
-            <span className="text-black text-[28px] font-bold leading-none">{price}</span>
-            {originalPrice && <span className="text-gray-text text-lg font-medium line-through">{originalPrice}</span>}
+          <div className="flex flex-col items-end flex-shrink-0 text-right">
+            <span className="text-discount text-[10px] md:text-sm font-bold bg-discount/10 px-1.5 py-0.5 rounded text-discount mb-1">
+              {discount}
+            </span>
+            <span className="text-black text-base sm:text-lg md:text-2xl font-black leading-none bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
+              {price}
+            </span>
+            {originalPrice && (
+              <span className="text-gray-400 text-[10px] md:text-sm font-semibold line-through mt-0.5">
+                {originalPrice}
+              </span>
+            )}
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-3 w-full max-w-[500px]">
+        <div className="flex flex-col xl:flex-row gap-2 w-full mt-auto">
           <button
-            className="flex-1 bg-[#E4E9FF] hover:bg-[#E4E9FF]/80 text-black px-4 py-4 rounded-md text-sm font-bold transition-colors"
-            onClick={openDialog}
+            className="w-full xl:w-auto xl:flex-1 bg-gray-100 hover:bg-gray-200 text-black px-2 py-2.5 rounded-lg text-[11px] md:text-xs lg:text-sm font-bold transition-all whitespace-nowrap text-center"
+            onClick={goToDetails}
           >
-            VIEW DETAILS
+            DETAILS
           </button>
           <AddToCartButton
+            slug={slug}
             title={title}
             size={size}
             price={price}
@@ -104,22 +134,6 @@ export default function ProductCard({ title, size, price, originalPrice, discoun
           />
         </div>
       </div>
-
-      {/* Product Details Dialog (reusing ProductImageDialog for details) */}
-      <ProductImageDialog
-        open={dialogOpen}
-        onOpenChange={setDialogOpen}
-        title={title}
-        size={size}
-        price={price}
-        originalPrice={originalPrice}
-        discountText={discount}
-        image={image}
-        images={images}
-        benefit={benefit}
-        form={form}
-        description={description}
-      />
-    </>
+    </div>
   );
 }

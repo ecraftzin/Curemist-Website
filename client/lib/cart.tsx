@@ -19,7 +19,7 @@ interface AppliedCoupon {
   discount: number;
 }
 
-interface CartContextValue {
+export interface CartContextValue {
   items: CartItem[];
   count: number;
   addItem: (item: CartItem, qty?: number) => Promise<void>;
@@ -29,6 +29,8 @@ interface CartContextValue {
   subtotal: number;
   appliedCoupon: AppliedCoupon | null;
   setAppliedCoupon: (coupon: AppliedCoupon | null) => void;
+  isCartOpen: boolean;
+  setIsCartOpen: (isOpen: boolean) => void;
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
@@ -37,6 +39,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const { user } = useAuth();
   const [items, setItems] = useState<CartItem[]>([]);
   const [appliedCoupon, setAppliedCoupon] = useState<AppliedCoupon | null>(null);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const { toast } = useToast();
 
   const fetchCart = async () => {
@@ -148,8 +151,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         if (error) throw error;
         await fetchCart();
-        toast({ title: "Added to cart" });
       }
+      setIsCartOpen(true);
     } catch (error: any) {
       toast({ title: "Error adding to cart", description: error.message, variant: "destructive" });
     }
@@ -223,6 +226,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     subtotal,
     appliedCoupon,
     setAppliedCoupon,
+    isCartOpen,
+    setIsCartOpen,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
