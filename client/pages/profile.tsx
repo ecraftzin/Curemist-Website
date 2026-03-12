@@ -398,35 +398,7 @@ export default function Profile() {
                   </div>
                 </div>
 
-                {/* Delete Profile Section */}
-                <div className="mt-8 pt-6 border-t flex justify-end">
-                  <Button
-                    onClick={() => setShowDeleteDialog(true)}
-                    variant="destructive"
-                    className="text-white hover:bg-red-600"
-                  >
-                    DELETE PROFILE
-                  </Button>
-                </div>
-
-                <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Delete Profile?</DialogTitle>
-                      <DialogDescription>
-                        This action cannot be undone. This will permanently delete your profile information and saved addresses.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <DialogFooter className="gap-2 sm:gap-0">
-                      <Button variant="outline" onClick={() => setShowDeleteDialog(false)}>
-                        Cancel
-                      </Button>
-                      <Button variant="destructive" onClick={handleDeleteProfile}>
-                        Yes, Delete My Profile
-                      </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
+                
 
               </div>
             )}

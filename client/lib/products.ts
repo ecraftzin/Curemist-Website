@@ -21,7 +21,7 @@ export const products: Product[] = [
         originalPrice: "₹168",
         discount: "5% Off",
         image: "/Products/homeproduct1.png",
-        images: ["/Products/Product1.0.png", "/Products/Product1.1.png"],
+        images: ["/Products/Product1.0.png", "/Products/Product1.1.jpg", "/Products/Product1.2.png", "/Products/CommonProduct.jpg", "/Products/Product1.3.png"],
         benefit: "Anti Fungal",
         form: "Spray",
         description:
@@ -35,7 +35,7 @@ export const products: Product[] = [
         originalPrice: "₹271",
         discount: "5% Off",
         image: "/Products/homeproduct2.png",
-        images: ["/Products/Product2.0.jpeg", "/Products/Product2.1.jpeg"],
+        images: ["/Products/Product2.1.jpeg", "/Products/Product2.2.JPG", "/Products/Product2.3.JPG", "/Products/CommonProduct.jpg", "/Products/Product2.5.JPG"],
         benefit: "Anti Fungal",
         form: "Spray",
         description:
@@ -49,7 +49,7 @@ export const products: Product[] = [
         originalPrice: "₹439",
         discount: "5% Off",
         image: "/Products/homeproduct3.png",
-        images: ["/Products/Product3.0.jpeg", "/Products/Product3.1.jpeg"],
+        images: ["/Products/Product3.0.jpeg", "/Products/Product3.1.jpeg", "/Products/CommonProduct.jpg", "/Products/Product3.3.png"],
         benefit: "Anti Fungal",
         form: "Spray",
         description:
@@ -63,7 +63,7 @@ export const products: Product[] = [
         originalPrice: "₹363",
         discount: "5% Off",
         image: "/Products/homeproduct4.png",
-        images: ["/Products/Product4.0.png", "/Products/Product4.1.png"],
+        images: ["/Products/Product4.0.png", "/Products/Product4.1.png", "/Products/CommonProduct.jpg", "/Products/Product3.4.png"],
         benefit: "Anti Fungal",
         form: "Spray",
         description:

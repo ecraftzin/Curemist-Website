@@ -58,12 +58,11 @@ const WhySafe: React.FC = () => {
       </div>
 
       <h2 className="ws-title">
-        Why CureMist is<br />
-        <em>100% Safe</em>
+        Why CureMist is 100% Safe
       </h2>
 
       <p className="ws-sub">
-        Every promise is backed by independent lab reports and clinical studies —
+        Every promise is backed by independent lab reports and clinical studies 
         publicly available for you to verify.
       </p>
 

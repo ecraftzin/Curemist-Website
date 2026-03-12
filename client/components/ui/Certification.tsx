@@ -204,8 +204,7 @@ const Certifications: React.FC = () => {
             </div>
 
             <h2 className="ct-title">
-                Our Certifications &amp;<br />
-                <strong>Lab Reports</strong>
+                Our Certifications Lab Reports
             </h2>
 
             <p className="ct-sub">

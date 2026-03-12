@@ -105,7 +105,7 @@ export default function ProductCard({
             <span className="text-discount text-[10px] md:text-sm font-bold bg-discount/10 px-1.5 py-0.5 rounded text-discount mb-1">
               {discount}
             </span>
-            <span className="text-black text-base sm:text-lg md:text-2xl font-black leading-none bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
+            <span className="text-black text-base sm:text-lg md:text-2xl font-bold leading-none bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
               {price}
             </span>
             {originalPrice && (

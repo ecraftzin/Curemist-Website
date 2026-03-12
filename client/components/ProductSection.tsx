@@ -61,10 +61,10 @@ export default function ProductSection() {
           {/* Desktop Snap Scroll List */}
           <div 
              ref={scrollContainerRef}
-             className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar scroll-smooth pt-4"
+             className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar scroll-smooth pt-4 items-stretch"
           >
              {carouselProducts.map((product, index) => (
-                <div key={index} className="w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] flex-shrink-0 snap-start h-full">
+                <div key={index} className="w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] flex-shrink-0 snap-start flex flex-col">
                    <ProductCard {...product} />
                 </div>
              ))}

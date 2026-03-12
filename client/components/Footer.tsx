@@ -20,14 +20,41 @@ export default function Footer() {
               src="/Logo/curemist.svg"
               className="h-[50px] md:h-[62px] w-auto mb-4 md:mb-6"
             />
-            <div className="space-y-2">
-              <p className="text-base md:text-lg font-extrabold text-black">Altus Pharma</p>
-              <p className="text-xs md:text-base font-medium text-black leading-relaxed">
-                13/223 B,C ,sukapuram Complex,<br />
-                Near Chambaramanam Temple Naduvattom,<br />
-                Sugapuram po, Edappal, Kerala 679576
-              </p>
-            </div>
+           <div className="space-y-3">
+  {/* Marketed By */}
+  <div className="flex flex-col gap-1">
+    <p className="text-xs font-semibold text-black tracking-wide">Marketed By</p>
+    <a 
+      href="https://www.altuspharma.in" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="inline-block hover:opacity-80 transition-opacity"
+    >
+      <img 
+        src="/Marketed&Manufactured/Marketedby.png" 
+        alt="Altus Pharma Logo" 
+        className="h-24 w-auto object-contain"
+      />
+    </a>
+  </div>
+
+  {/* Manufactured By */}
+  <div className="flex flex-col gap-1">
+    <p className="text-xs font-semibold text-black uppercase tracking-wide">Manufactured By</p>
+    <a 
+      href="https://www.arobel.net/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="inline-block hover:opacity-80 transition-opacity"
+    >
+      <img 
+        src="/Marketed&Manufactured/Manufacturedby.png" 
+        alt="Arobel Logo" 
+        className="h-24 w-auto object-contain"
+      />
+    </a>
+  </div>
+</div>
           </div>
 
           {/* Quick Links */}

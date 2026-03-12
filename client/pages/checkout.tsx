@@ -5,6 +5,8 @@ import { useAuth } from '@/lib/auth';
 import { toast } from '@/components/ui/use-toast';
 import { supabase } from '@/lib/supabase';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 declare global {
   interface Window {
@@ -35,7 +37,6 @@ export default function Checkout() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<'cod' | 'razorpay'>('razorpay');
 
   // Customer Information
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
@@ -175,7 +176,7 @@ export default function Checkout() {
         gst_amount: gstAmount,
         total_price: totalPrice,
         payment_status: paymentStatus,
-        payment_method: paymentMethod,
+        payment_method: 'razorpay',
         order_status: 'processing'
       };
 
@@ -222,6 +223,8 @@ export default function Checkout() {
         first_name: customerInfo.firstName,
         last_name: customerInfo.lastName,
         phone: customerInfo.phone,
+        sex: customerInfo.sex,
+        dob: customerInfo.dob,
         updated_at: new Date()
       });
 
@@ -366,46 +369,32 @@ export default function Checkout() {
 
     setLoading(true);
 
-    if (paymentMethod === 'razorpay') {
-      // Open Razorpay payment modal
-      await initiateRazorpayPayment();
-    } else {
-      // COD flow
-      try {
-        console.log('Processing COD order...');
-        const order = await saveOrderToSupabase('cod_pending');
-
-        if (order) {
-          toast({ title: 'Success', description: 'Order placed successfully!' });
-          setTimeout(() => navigate('/profile'), 2000);
-        } else {
-          throw new Error('Failed to create order');
-        }
-      } catch (err: any) {
-        console.error('COD order error:', err);
-        toast({ title: 'Order Failed', description: err.message || 'Failed to place order', variant: 'destructive' });
-      } finally {
-        setLoading(false);
-      }
-    }
+    // Open Razorpay payment modal
+    await initiateRazorpayPayment();
   };
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen pt-[150px] flex items-center justify-center bg-background">
-        <div className="text-center">
-          <p className="text-lg mb-4">Your cart is empty.</p>
-          <button onClick={() => navigate('/')} className="bg-brand-yellow text-brand-blue px-6 py-3 rounded font-bold">
-            Continue Shopping
-          </button>
+      <>
+        <Header />
+        <div className="min-h-screen pt-[150px] flex items-center justify-center bg-background">
+          <div className="text-center">
+            <p className="text-lg mb-4">Your cart is empty.</p>
+            <button onClick={() => navigate('/')} className="bg-brand-yellow text-brand-blue px-6 py-3 rounded font-bold">
+              Continue Shopping
+            </button>
+          </div>
         </div>
-      </div>
+        <Footer />
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen pt-[110px] md:pt-[145px] bg-background">
-      <div className="container mx-auto px-4 md:px-6 lg:px-24 py-6 md:py-12">
+    <>
+      <Header />
+      <div className="min-h-screen pt-[110px] md:pt-[145px] bg-background">
+        <div className="container mx-auto px-4 md:px-6 lg:px-24 py-6 md:py-12">
         <h1 className="text-2xl md:text-3xl font-bold text-curemist-purple mb-6 md:mb-8">Checkout</h1>
 
         <div className="grid lg:grid-cols-3 gap-6 md:gap-8">
@@ -506,14 +495,14 @@ export default function Checkout() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Sex *</label>
+                    <label className="block text-sm font-medium mb-2">Gender *</label>
                     <select
                       value={customerInfo.sex}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, sex: e.target.value })}
                       className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-brand-yellow bg-white"
                       required
                     >
-                      <option value="">Select Sex</option>
+                      <option value="">Select Gender</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
                       <option value="Other">Other</option>
@@ -680,21 +669,8 @@ export default function Checkout() {
                 <h2 className="text-xl font-bold text-curemist-purple mb-4">Payment Method</h2>
                 <div className="space-y-3">
                   {/* Pay Online - Razorpay */}
-                  <div
-                    className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${paymentMethod === 'razorpay'
-                      ? 'border-[#4A0E4E] bg-purple-50 shadow-sm'
-                      : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                    onClick={() => setPaymentMethod('razorpay')}
-                  >
+                  <div className="border-2 rounded-lg p-4 border-[#4A0E4E] bg-purple-50 shadow-sm">
                     <div className="flex items-center gap-4">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        checked={paymentMethod === 'razorpay'}
-                        readOnly
-                        className="w-5 h-5 text-[#4A0E4E] focus:ring-[#4A0E4E]"
-                      />
                       <div className="flex items-center gap-3 flex-1">
                         <div className="bg-blue-100 p-2.5 rounded-full">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -712,54 +688,13 @@ export default function Checkout() {
                         <img src="https://cdn.razorpay.com/static/assets/logo/payment/mastercard.svg" alt="Mastercard" className="h-5" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
                       </div>
                     </div>
-                    {paymentMethod === 'razorpay' && (
-                      <div className="mt-3 pt-3 border-t border-purple-200">
-                        <p className="text-xs text-gray-600">
-                          ✔ Secure payment processed by Razorpay<br />
-                          ✔ UPI, Debit/Credit Cards, Net Banking & Wallets accepted<br />
-                          ✔ Instant order confirmation
-                        </p>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Cash on Delivery */}
-                  <div
-                    className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${paymentMethod === 'cod'
-                      ? 'border-green-500 bg-green-50 shadow-sm'
-                      : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                    onClick={() => setPaymentMethod('cod')}
-                  >
-                    <div className="flex items-center gap-4">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        checked={paymentMethod === 'cod'}
-                        readOnly
-                        className="w-5 h-5 text-green-600 focus:ring-green-500"
-                      />
-                      <div className="flex items-center gap-3 flex-1">
-                        <div className="bg-green-100 p-2.5 rounded-full">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-                          </svg>
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-gray-900">Cash on Delivery (COD)</h3>
-                          <p className="text-xs text-gray-500 mt-0.5">Pay when your order arrives</p>
-                        </div>
-                      </div>
+                    <div className="mt-3 pt-3 border-t border-purple-200">
+                      <p className="text-xs text-gray-600">
+                        ✔ Secure payment processed by Razorpay<br />
+                        ✔ UPI, Debit/Credit Cards, Net Banking & Wallets accepted<br />
+                        ✔ Instant order confirmation
+                      </p>
                     </div>
-                    {paymentMethod === 'cod' && (
-                      <div className="mt-3 pt-3 border-t border-green-200">
-                        <p className="text-xs text-gray-600">
-                          ✔ No advance payment required<br />
-                          ✔ Pay only when you receive your order<br />
-                          ✔ Verify product quality before payment
-                        </p>
-                      </div>
-                    )}
                   </div>
                 </div>
               </section>
@@ -768,16 +703,9 @@ export default function Checkout() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full font-bold py-4 rounded-lg text-lg transition-colors disabled:opacity-50 shadow-md ${paymentMethod === 'razorpay'
-                  ? 'bg-[#4A0E4E] text-white hover:bg-[#3a0b3e]'
-                  : 'bg-brand-yellow text-brand-blue hover:bg-[#816306]'
-                  }`}
+                className="w-full font-bold py-4 rounded-lg text-lg transition-colors disabled:opacity-50 shadow-md bg-[#4A0E4E] text-white hover:bg-[#3a0b3e]"
               >
-                {loading
-                  ? 'Processing...'
-                  : paymentMethod === 'razorpay'
-                    ? `Pay ₹${totalPrice} Now`
-                    : 'Place Order (COD)'}
+                {loading ? 'Processing...' : `Pay ₹${totalPrice} Now`}
               </button>
             </form>
           </div>
@@ -836,16 +764,15 @@ export default function Checkout() {
 
             {/* Payment method badge */}
             <div className="mt-3 text-center">
-              <span className={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full ${paymentMethod === 'razorpay'
-                ? 'bg-purple-100 text-purple-800'
-                : 'bg-green-100 text-green-800'
-                }`}>
-                {paymentMethod === 'razorpay' ? '💳 Paying Online' : '💵 Cash on Delivery'}
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-purple-100 text-purple-800">
+                💳 Paying Online
               </span>
             </div>
           </aside>
         </div>
       </div>
     </div>
-  );
+    <Footer />
+  </>
+);
 }
