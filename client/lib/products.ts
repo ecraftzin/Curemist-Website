@@ -14,14 +14,14 @@ export interface Product {
 
 export const products: Product[] = [
     {
-        slug: "curemist-ayurvedic-first-aid-wound-spray-12-5g",
-        title: "CureMist Ayurvedic First Aid Wound Spray 12.5g",
-        size: "12.5 gm",
-        price: "₹160",
-        originalPrice: "₹168",
+        slug: "curemist-ayurvedic-first-aid-wound-spray-50g",
+        title: "CureMist Ayurvedic First Aid Wound Spray 50g",
+        size: "50 gm",
+        price: "₹345",
+        originalPrice: "₹363",
         discount: "5% Off",
-        image: "/Products/homeproduct1.png",
-        images: ["/Products/Product1.0.png", "/Products/Product1.1.jpg", "/Products/Product1.2.png", "/Products/CommonProduct.jpg", "/Products/Product1.3.png"],
+        image: "/Products/homeproduct4.png",
+        images: ["/Products/Product4.0.png", "/Products/Product4.1.png", "/Products/CommonProduct.jpg", "/Products/Product3.4.png"],
         benefit: "Anti Fungal",
         form: "Spray",
         description:
@@ -42,6 +42,20 @@ export const products: Product[] = [
             "CureMist – The World's First Ayurvedic Wound Spray. 100% Ayurvedic and AYUSH-approved, it delivers fast, hands-free healing with a waterproof, dust-proof protective layer, harnessing turmeric's anti-bacterial, anti-fungal, and anti-inflammatory power for safe use across all ages.",
     },
     {
+        slug: "curemist-ayurvedic-first-aid-wound-spray-12-5g",
+        title: "CureMist Ayurvedic First Aid Wound Spray 12.5g",
+        size: "12.5 gm",
+        price: "₹160",
+        originalPrice: "₹168",
+        discount: "5% Off",
+        image: "/Products/homeproduct1.png",
+        images: ["/Products/Product1.0.png", "/Products/Product1.1.jpg", "/Products/Product1.2.png", "/Products/CommonProduct.jpg", "/Products/Product1.3.png"],
+        benefit: "Anti Fungal",
+        form: "Spray",
+        description:
+            "CureMist – The World's First Ayurvedic Wound Spray. 100% Ayurvedic and AYUSH-approved, it delivers fast, hands-free healing with a waterproof, dust-proof protective layer, harnessing turmeric's anti-bacterial, anti-fungal, and anti-inflammatory power for safe use across all ages.",
+    },
+    {
         slug: "curemist-ayurvedic-first-aid-wound-spray-combo-37-5g",
         title: "CureMist Ayurvedic First Aid Wound Spray Combo Pack(12.5g + 25g)",
         size: "Combo",
@@ -55,18 +69,5 @@ export const products: Product[] = [
         description:
             "CureMist – The World's First Ayurvedic Wound Spray. 100% Ayurvedic and AYUSH-approved, it delivers fast, hands-free healing with a waterproof, dust-proof protective layer, harnessing turmeric's anti-bacterial, anti-fungal, and anti-inflammatory power for safe use across all ages.",
     },
-    {
-        slug: "curemist-ayurvedic-first-aid-wound-spray-50g",
-        title: "CureMist Ayurvedic First Aid Wound Spray 50g",
-        size: "50 gm",
-        price: "₹345",
-        originalPrice: "₹363",
-        discount: "5% Off",
-        image: "/Products/homeproduct4.png",
-        images: ["/Products/Product4.0.png", "/Products/Product4.1.png", "/Products/CommonProduct.jpg", "/Products/Product3.4.png"],
-        benefit: "Anti Fungal",
-        form: "Spray",
-        description:
-            "CureMist – The World's First Ayurvedic Wound Spray. 100% Ayurvedic and AYUSH-approved, it delivers fast, hands-free healing with a waterproof, dust-proof protective layer, harnessing turmeric's anti-bacterial, anti-fungal, and anti-inflammatory power for safe use across all ages.",
-    },
 ];
+

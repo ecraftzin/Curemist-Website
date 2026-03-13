@@ -13,6 +13,7 @@ import { AuthProvider, useAuth } from "@/lib/auth";
 
 import Preloader from "@/components/Preloader";
 import CartDrawer from "@/components/CartDrawer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 import Index from "./pages/Index";
 import Blog from "./pages/blog";
@@ -49,6 +50,10 @@ function AppRoutes() {
 
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -134,6 +139,7 @@ const App = () => (
         <CartProvider>
           <BrowserRouter>
             <CartDrawer />
+            <WhatsAppButton />
             <AppRoutes />
           </BrowserRouter>
         </CartProvider>

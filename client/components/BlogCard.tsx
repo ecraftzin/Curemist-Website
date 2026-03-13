@@ -12,17 +12,19 @@ interface BlogCardProps {
 const BlogCard = ({ id, image, title, date, excerpt }: BlogCardProps) => {
   return (
     <article className="flex flex-col">
-      <div className="aspect-[4/3] overflow-hidden rounded-lg mb-4">
-        <img 
-          src={image} 
-          alt={title}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-        />
-      </div>
-      
-      <h3 className="text-lg font-bold text-black leading-tight mb-2">
-        {title}
-      </h3>
+      <Link to={`/blog/${id}`} className="block">
+        <div className="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+          <img 
+            src={image} 
+            alt={title}
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+        
+        <h3 className="text-lg font-bold text-black leading-tight mb-2 hover:text-primary transition-colors">
+          {title}
+        </h3>
+      </Link>
       
       <p className="text-sm font-medium text-blog-date mb-3">
         {date}

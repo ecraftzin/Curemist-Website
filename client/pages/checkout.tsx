@@ -682,10 +682,16 @@ export default function Checkout() {
                           <p className="text-xs text-gray-500 mt-0.5">UPI, Cards, Net Banking, Wallets</p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1.5">
-                        <img src="https://cdn.razorpay.com/static/assets/logo/payment/upi.svg" alt="UPI" className="h-5" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
-                        <img src="https://cdn.razorpay.com/static/assets/logo/payment/visa.svg" alt="Visa" className="h-5" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
-                        <img src="https://cdn.razorpay.com/static/assets/logo/payment/mastercard.svg" alt="Mastercard" className="h-5" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                      <div className="flex items-center gap-3">
+                        <div className="hidden sm:flex items-center gap-1.5 opacity-70">
+                          <img src="https://cdn.razorpay.com/static/assets/logo/payment/upi.svg" alt="UPI" className="h-4" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                          <img src="https://cdn.razorpay.com/static/assets/logo/payment/visa.svg" alt="Visa" className="h-4" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                          <img src="https://cdn.razorpay.com/static/assets/logo/payment/mastercard.svg" alt="Mastercard" className="h-4" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                        </div>
+                        <div className="flex flex-col items-end">
+                          <span className="text-[10px] text-gray-500 mb-0.5">Powered by</span>
+                          <img src="/Razorpay/razorpaylogo.png" alt="Razorpay" className="h-20 object-contain" />
+                        </div>
                       </div>
                     </div>
                     <div className="mt-3 pt-3 border-t border-purple-200">

@@ -95,18 +95,56 @@ const BlogDetail = () => {
 
           {/* Content */}
           <div className="prose prose-lg max-w-none">
-            {post.content.map((paragraph, index) => (
-              <div key={index} className="mb-6">
-                {index > 0 && index % 2 === 0 && (
-                  <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                  </h2>
-                )}
-                <p className="text-foreground/80 leading-relaxed">
-                  {paragraph}
-                </p>
-              </div>
-            ))}
+            {post.content.map((item, index) => {
+              // Backward compatibility for plain string paragraphs
+              if (typeof item === 'string') {
+                return (
+                  <div key={index} className="mb-6">
+                    {index > 0 && index % 2 === 0 && (
+                      <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">
+                        Sed ut perspiciatis unde omnis iste natus error sit
+                      </h2>
+                    )}
+                    <p className="text-foreground/80 leading-relaxed">
+                      {item}
+                    </p>
+                  </div>
+                );
+              }
+
+              // Handle structured content
+              switch (item.type) {
+                case 'mainheading':
+                  return (
+                    <h2 key={index} className="text-2xl md:text-3xl font-bold text-foreground mt-10 mb-6">
+                      {item.text}
+                    </h2>
+                  );
+                case 'subheading':
+                  return (
+                    <h3 key={index} className="text-xl md:text-2xl font-semibold text-foreground mt-8 mb-4">
+                      {item.text}
+                    </h3>
+                  );
+                case 'paragraph':
+                case 'description':
+                  return (
+                    <p key={index} className="text-foreground/80 leading-relaxed mb-6">
+                      {item.text}
+                    </p>
+                  );
+                case 'list':
+                  return (
+                    <ul key={index} className="list-disc pl-6 mb-6 text-foreground/80 leading-relaxed space-y-2">
+                      {item.items?.map((listItem: string, i: number) => (
+                        <li key={i}>{listItem}</li>
+                      ))}
+                    </ul>
+                  );
+                default:
+                  return null;
+              }
+            })}
           </div>
 
           {/* Action Buttons */}
